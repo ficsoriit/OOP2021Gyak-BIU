@@ -13,14 +13,24 @@ import java.util.Scanner;
  */
 public class SzoBeolvasasRefactored1 {
 	
-	final private Scanner input = new Scanner(System.in);
+	final private Scanner input;
+	final private char terminator;
 	
-	/*
-	public Scanner megnyitInput() {
+	public SzoBeolvasasRefactored1(char terminator) {
+		super();
+		this.terminator = terminator;
+		input = megnyitInput();
+	}
+		
+	public SzoBeolvasasRefactored1() {
+		this('*');
+	}
+
+	private Scanner megnyitInput() {
 		Scanner input = new Scanner(System.in);
 		return input;
 	}
-	*/
+
 	
 	private String sortBeolvas() {
 		return input.nextLine();
@@ -28,7 +38,7 @@ public class SzoBeolvasasRefactored1 {
 	
 	private String getKovetkezoSzo() {
 		String szo = sortBeolvas();
-		if (szo.charAt(0) == '*') {
+		if (szo.charAt(0) == terminator) {
 			szo = "";
 		}
 		return szo;
