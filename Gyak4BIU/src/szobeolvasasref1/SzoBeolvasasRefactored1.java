@@ -36,23 +36,28 @@ public class SzoBeolvasasRefactored1 {
 		return input.nextLine();
 	}
 	
-	private String getKovetkezoSzo() {
+	private String getKovetkezoSzo() throws Exception {
 		String szo = sortBeolvas();
+		if (szo.equals("")) return szo;
 		if (szo.charAt(0) == terminator) {
-			szo = "";
+			throw new Exception("Termináló karakter");
 		}
 		return szo;
 	}
 	
 	public ArrayList<String> szavakatELtarol() {
 		ArrayList<String> szavak = new ArrayList<>();
-		String szo = getKovetkezoSzo();
-		if (szo.equals("")) {
-			return szavak;
-		}
-		szavak.add(szo);
+		String szo;
 		//!((szo = getKovetkezoSzo(input)).equals(""))
-		while ( !((szo = getKovetkezoSzo()).equals("")) ) {
+		while ( true ) {
+			try {
+				szo = getKovetkezoSzo();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				System.out.println(e.getMessage());
+				break;
+			}
 			boolean beszuras = false;;
 			for (int i=0; i<szavak.size(); i++) {
 				if (szavak.get(i).compareTo(szo)>=0) {
